@@ -1,12 +1,184 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>NR — Jake</title><style>*{box-sizing:border-box;margin:0;padding:0}body{background:#0f1117;color:#e8eaf0;font-family:'Inter',-apple-system,sans-serif}.header{background:#1a1d27;border-bottom:1px solid #2e3348;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:18px;font-weight:700}.logo span{color:#6366f1}.week-label{color:#7b82a0;font-size:13px}.summary-strip{background:#1a1d27;border-bottom:1px solid #2e3348;padding:14px 32px;display:flex;gap:40px}.metric{text-align:center}.metric-val{font-size:22px;font-weight:700;color:#a5b4fc}.metric-lbl{font-size:11px;color:#7b82a0;margin-top:2px}.main{display:flex;height:calc(100vh - 118px)}.sidebar{width:220px;background:#13151f;border-right:1px solid #2e3348;padding:20px 0;overflow-y:auto;flex-shrink:0}.sidebar-title{font-size:11px;color:#7b82a0;text-transform:uppercase;letter-spacing:.05em;padding:0 20px 12px}.acct-item{padding:10px 20px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;color:#c5c9dc;transition:background .1s;border-left:2px solid transparent}.acct-item:hover{background:#1a1d27}.acct-item.active{background:#1e2133;border-left-color:#6366f1;color:#fff}.acct-name{flex:1;font-weight:500}.content{flex:1;overflow-y:auto;padding:24px 32px}.card{background:#1a1d27;border:1px solid #2e3348;border-radius:12px;padding:20px 24px;margin-bottom:16px}.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.card-title{font-size:16px;font-weight:700}.light{font-size:20px}.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.m-box{background:#13151f;border-radius:8px;padding:12px}.m-val{font-size:18px;font-weight:700;color:#a5b4fc}.m-lbl{font-size:11px;color:#7b82a0;margin-top:2px}.m-chg{font-size:12px;margin-top:4px}.chg-pos{color:#4ade80}.chg-neg{color:#f87171}.chg-neu{color:#7b82a0}.flag-row{padding:8px 12px;border-radius:6px;font-size:13px;margin-bottom:6px}.flag-red{background:rgba(239,68,68,.12);border-left:3px solid #ef4444;color:#fca5a5}.flag-yellow{background:rgba(234,179,8,.12);border-left:3px solid #eab308;color:#fde68a}.flag-green{background:rgba(74,222,128,.12);border-left:3px solid #4ade80;color:#bbf7d0}.section-title{font-size:14px;font-weight:600;color:#7b82a0;text-transform:uppercase;letter-spacing:.05em;margin:24px 0 12px}.action-item{display:flex;gap:10px;padding:12px 16px;background:#13151f;border-radius:8px;margin-bottom:8px;font-size:13px;color:#c5c9dc}.action-num{color:#6366f1;font-weight:700;min-width:20px}.login-overlay{position:fixed;inset:0;background:#0f1117;display:flex;align-items:center;justify-content:center;z-index:999}.login-box{background:#1a1d27;border:1px solid #2e3348;border-radius:16px;padding:40px;width:340px;text-align:center}.login-logo{font-size:22px;font-weight:700;margin-bottom:4px}.login-logo span{color:#6366f1}.login-sub{color:#7b82a0;font-size:13px;margin-bottom:28px}.login-input{width:100%;background:#13151f;border:1px solid #2e3348;border-radius:8px;padding:12px 16px;color:#e8eaf0;font-size:14px;margin-bottom:12px;outline:none}.login-input:focus{border-color:#6366f1}.login-btn{width:100%;background:#6366f1;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:600;cursor:pointer}.login-btn:hover{background:#5254cc}.login-err{color:#f87171;font-size:12px;margin-top:8px;display:none}</style></head><body><div class="login-overlay" id="loginOverlay"><div class="login-box"><div class="login-logo">Net<span>Revenue</span></div><div class="login-sub">Sales Director Dashboard</div><input class="login-input" type="password" id="pwInput" placeholder="Enter your password" onkeydown="if(event.key==='Enter')tryLogin()"/><button class="login-btn" onclick="tryLogin()">Access Dashboard</button><div class="login-err" id="loginErr">Incorrect password</div></div></div><div id="dashContent" style="display:none"><div class="header"><div class="logo">Net<span>Revenue</span> <span style="font-weight:400;font-size:14px;color:#7b82a0;margin-left:8px">Apollo Team</span></div><div class="week-label">Mon 30 Mar – Sun 5 Apr 2026 · Jake's Accounts</div></div><div class="summary-strip"><div class="metric"><div class="metric-val">$203,066</div><div class="metric-lbl">Total Cash</div></div><div class="metric"><div class="metric-val">46</div><div class="metric-lbl">Total Deals</div></div><div class="metric"><div class="metric-val">52.9%</div><div class="metric-lbl">Avg Show Rate</div></div><div class="metric"><div class="metric-val">21.7%</div><div class="metric-lbl">Avg Close Rate</div></div><div class="metric"><div class="metric-val">5</div><div class="metric-lbl">Accounts</div></div></div><div class="main"><div class="sidebar"><div class="sidebar-title">Accounts</div><div class="acct-item" onclick="showAccount('Clo_Bare_Money_Coach')" id="si-Clo_Bare_Money_Coach"><span>🟢</span><span class="acct-name">Clo Bare Money Coach</span></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>NR — Jake</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1117;color:#e8eaf0;font-family:'Inter',-apple-system,sans-serif}
+.header{background:#1a1d27;border-bottom:1px solid #2e3348;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:18px;font-weight:700}.logo span{color:#6366f1}
+.week-label{color:#7b82a0;font-size:13px}
+.summary-strip{background:#1a1d27;border-bottom:1px solid #2e3348;padding:14px 32px;display:flex;gap:40px;flex-wrap:wrap}
+.metric{text-align:center}
+.metric-val{font-size:22px;font-weight:700;color:#a5b4fc}
+.metric-lbl{font-size:11px;color:#7b82a0;margin-top:2px}
+.main{display:flex;min-height:calc(100vh - 118px)}
+.sidebar{width:220px;background:#13151f;border-right:1px solid #2e3348;padding:20px 0;overflow-y:auto;flex-shrink:0}
+.sidebar-title{font-size:11px;color:#7b82a0;text-transform:uppercase;letter-spacing:.05em;padding:0 20px 12px}
+.acct-item{padding:10px 20px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;color:#c5c9dc;transition:background .1s;border-left:2px solid transparent}
+.acct-item:hover{background:#1a1d27}
+.acct-item.active{background:#1e2133;border-left-color:#6366f1;color:#fff}
+.acct-name{flex:1;font-weight:500}
+.content{flex:1;overflow-y:auto;padding:24px 32px}
+
+/* Action Items - Primary Focus */
+.actions-section{margin-bottom:32px}
+.actions-header{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.actions-count{background:#6366f1;color:#fff;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px}
+.action-card{background:#1a1d27;border:1px solid #2e3348;border-radius:12px;padding:20px 24px;margin-bottom:12px;border-left:4px solid #2e3348}
+.action-card.critical{border-left-color:#ef4444}
+.action-card.warning{border-left-color:#eab308}
+.action-card.win{border-left-color:#4ade80}
+.action-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:4px;margin-bottom:8px}
+.badge-critical{background:rgba(239,68,68,.15);color:#fca5a5}
+.badge-warning{background:rgba(234,179,8,.15);color:#fde68a}
+.badge-win{background:rgba(74,222,128,.15);color:#bbf7d0}
+.action-acct{font-size:11px;color:#7b82a0;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.action-title{font-size:15px;font-weight:700;margin-bottom:8px;color:#e8eaf0}
+.action-detail{font-size:13px;color:#a0a5ba;line-height:1.65}
+.action-detail strong{color:#c5c9dc}
+.no-actions{background:#1a1d27;border:1px solid #2e3348;border-radius:12px;padding:32px;text-align:center;color:#7b82a0;font-size:14px}
+
+/* Divider */
+.section-divider{border:none;border-top:1px solid #2e3348;margin:32px 0}
+.section-title{font-size:14px;font-weight:600;color:#7b82a0;text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px}
+
+/* Account Cards - Secondary */
+.card{background:#1a1d27;border:1px solid #2e3348;border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-title{font-size:16px;font-weight:700}
+.light{font-size:20px}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.m-box{background:#13151f;border-radius:8px;padding:12px}
+.m-val{font-size:18px;font-weight:700;color:#a5b4fc}
+.m-lbl{font-size:11px;color:#7b82a0;margin-top:2px}
+.m-chg{font-size:12px;margin-top:4px}
+.chg-pos{color:#4ade80}.chg-neg{color:#f87171}.chg-neu{color:#7b82a0}
+.flag-row{padding:8px 12px;border-radius:6px;font-size:13px;margin-bottom:6px}
+.flag-red{background:rgba(239,68,68,.12);border-left:3px solid #ef4444;color:#fca5a5}
+.flag-yellow{background:rgba(234,179,8,.12);border-left:3px solid #eab308;color:#fde68a}
+.flag-green{background:rgba(74,222,128,.12);border-left:3px solid #4ade80;color:#bbf7d0}
+
+/* Login */
+.login-overlay{position:fixed;inset:0;background:#0f1117;display:flex;align-items:center;justify-content:center;z-index:999}
+.login-box{background:#1a1d27;border:1px solid #2e3348;border-radius:16px;padding:40px;width:340px;text-align:center}
+.login-logo{font-size:22px;font-weight:700;margin-bottom:4px}.login-logo span{color:#6366f1}
+.login-sub{color:#7b82a0;font-size:13px;margin-bottom:28px}
+.login-input{width:100%;background:#13151f;border:1px solid #2e3348;border-radius:8px;padding:12px 16px;color:#e8eaf0;font-size:14px;margin-bottom:12px;outline:none}
+.login-input:focus{border-color:#6366f1}
+.login-btn{width:100%;background:#6366f1;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:600;cursor:pointer}
+.login-btn:hover{background:#5254cc}
+.login-err{color:#f87171;font-size:12px;margin-top:8px;display:none}
+
+/* Tab navigation */
+.tab-bar{display:flex;gap:4px;margin-bottom:24px;background:#13151f;border-radius:8px;padding:4px}
+.tab-btn{flex:1;padding:10px 16px;border:none;background:transparent;color:#7b82a0;font-size:13px;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
+.tab-btn.active{background:#6366f1;color:#fff}
+.tab-btn:hover:not(.active){background:#1a1d27;color:#c5c9dc}
+.tab-content{display:none}
+.tab-content.active{display:block}
+</style></head><body>
+<div class="login-overlay" id="loginOverlay"><div class="login-box"><div class="login-logo">Net<span>Revenue</span></div><div class="login-sub">Sales Director Dashboard</div><input class="login-input" type="password" id="pwInput" placeholder="Enter your password" onkeydown="if(event.key==='Enter')tryLogin()"/><button class="login-btn" onclick="tryLogin()">Access Dashboard</button><div class="login-err" id="loginErr">Incorrect password</div></div></div>
+<div id="dashContent" style="display:none">
+<div class="header"><div class="logo">Net<span>Revenue</span> <span style="font-weight:400;font-size:14px;color:#7b82a0;margin-left:8px">Apollo Team</span></div><div class="week-label">Mon 30 Mar – Sun 5 Apr 2026 · Jake's Accounts</div></div>
+<div class="summary-strip">
+<div class="metric"><div class="metric-val">$203,066</div><div class="metric-lbl">Total Cash</div></div>
+<div class="metric"><div class="metric-val">46</div><div class="metric-lbl">Total Deals</div></div>
+<div class="metric"><div class="metric-val">52.9%</div><div class="metric-lbl">Avg Show Rate</div></div>
+<div class="metric"><div class="metric-val">21.7%</div><div class="metric-lbl">Avg Close Rate</div></div>
+<div class="metric"><div class="metric-val">5</div><div class="metric-lbl">Accounts</div></div>
+</div>
+<div class="main">
+<div class="sidebar"><div class="sidebar-title">Accounts</div><div class="acct-item" onclick="showAccount('Clo_Bare_Money_Coach')" id="si-Clo_Bare_Money_Coach"><span>🟢</span><span class="acct-name">Clo Bare Money Coach</span></div>
 <div class="acct-item" onclick="showAccount('Hamza_Invests')" id="si-Hamza_Invests"><span>🟢</span><span class="acct-name">Hamza Invests</span></div>
 <div class="acct-item" onclick="showAccount('Infinite_Acquisitions_LLC')" id="si-Infinite_Acquisitions_LLC"><span>🟢</span><span class="acct-name">Infinite Acquisitions LLC</span></div>
 <div class="acct-item" onclick="showAccount('Join_Relentless')" id="si-Join_Relentless"><span>🟢</span><span class="acct-name">Join Relentless</span></div>
 <div class="acct-item" onclick="showAccount('Yorkshire_College_Planning')" id="si-Yorkshire_College_Planning"><span>🔴</span><span class="acct-name">Yorkshire College Planning</span></div>
-</div><div class="content" id="mainContent"><div class="card" id="card-Clo_Bare_Money_Coach"><div class="card-header"><div class="card-title">Clo Bare Money Coach</div><div class="light">🟢</div></div><div class="metrics-row"><div class="m-box"><div class="m-val">$21,400</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-pos">+13.2%</div></div><div class="m-box"><div class="m-val">5</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $4,280</div></div><div class="m-box"><div class="m-val">65.1%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">63 booked / 41 showed</div></div><div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div></div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Hamza_Invests"><div class="card-header"><div class="card-title">Hamza Invests</div><div class="light">🟢</div></div><div class="metrics-row"><div class="m-box"><div class="m-val">$18,666</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-pos">+55.5%</div></div><div class="m-box"><div class="m-val">1</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $18,666</div></div><div class="m-box"><div class="m-val">50.0%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">20 booked / 10 showed</div></div><div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div></div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Infinite_Acquisitions_LLC"><div class="card-header"><div class="card-title">Infinite Acquisitions LLC</div><div class="light">🟢</div></div><div class="metrics-row"><div class="m-box"><div class="m-val">$0</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-neu">—</div></div><div class="m-box"><div class="m-val">0</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $0</div></div><div class="m-box"><div class="m-val">40.0%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">5 booked / 2 showed</div></div><div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div></div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Join_Relentless"><div class="card-header"><div class="card-title">Join Relentless</div><div class="light">🟢</div></div><div class="metrics-row"><div class="m-box"><div class="m-val">$0</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-neu">—</div></div><div class="m-box"><div class="m-val">0</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $0</div></div><div class="m-box"><div class="m-val">0.0%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">4 booked / 0 showed</div></div><div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div></div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Yorkshire_College_Planning"><div class="card-header"><div class="card-title">Yorkshire College Planning</div><div class="light">🔴</div></div><div class="metrics-row"><div class="m-box"><div class="m-val">$163,000</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-neg">-2.6%</div></div><div class="m-box"><div class="m-val">40</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $4,075</div></div><div class="m-box"><div class="m-val">56.5%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">269 booked / 152 showed</div></div><div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div></div><div class="flag-row flag-red">⚠️ Refunds: $9,700</div></div><div class="section-title">🎯 Action Items This Week</div><div class="action-item"><span class="action-num">1</span><span><strong>Yorkshire College Planning</strong> — Refunds: $9,700. Review with rep immediately.</span></div>
-<div class="action-item"><span class="action-num">2</span><span><strong>Infinite Acquisitions LLC</strong> — Booked calls -73.7% WoW. Check setter activity.</span></div>
-<div class="action-item"><span class="action-num">3</span><span><strong>Clo Bare Money Coach</strong> — Show rate at 65.1%. Scale the confirmation process.</span></div>
-<div class="action-item"><span class="action-num">4</span><span><strong>Hamza Invests</strong> — Revenue +55.5% WoW. Double down on what drove it.</span></div>
-<div class="action-item"><span class="action-num">5</span><span><strong>Hamza Invests</strong> — Bookings +100.0% WoW. Ensure closers have capacity.</span></div>
-<div class="action-item"><span class="action-num">6</span><span><strong>Yorkshire College Planning</strong> — Show rate at 56.5%. Scale the confirmation process.</span></div>
-</div></div></div><script>const PASS="NetRev123";function tryLogin(){if(document.getElementById('pwInput').value===PASS){document.getElementById('loginOverlay').style.display='none';document.getElementById('dashContent').style.display='block';sessionStorage.setItem('nr_auth','1');}else{document.getElementById('loginErr').style.display='block';}}if(sessionStorage.getItem('nr_auth')==='1'){document.getElementById('loginOverlay').style.display='none';document.getElementById('dashContent').style.display='block';}function showAccount(id){const el=document.getElementById('card-'+id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.acct-item').forEach(i=>i.classList.remove('active'));const si=document.getElementById('si-'+id);if(si)si.classList.add('active');}</script></body></html>
+</div>
+<div class="content" id="mainContent">
+
+<div class="tab-bar">
+<button class="tab-btn active" onclick="switchTab('actions')">🎯 Action Items (6)</button>
+<button class="tab-btn" onclick="switchTab('metrics')">📊 Account Metrics</button>
+</div>
+
+<div class="tab-content active" id="tab-actions">
+<div class="actions-section">
+<div style="color:#7b82a0;font-size:13px;margin-bottom:16px">1 critical · 1 to monitor · 4 wins</div>
+<div class="action-card critical">
+<div class="action-acct">Yorkshire College Planning</div>
+<span class="action-badge badge-critical">Action Required</span>
+<div class="action-title">Refunds recorded this week</div>
+<div class="action-detail">$9,700 in refunds against $163,000 cash collected (6% of revenue). Pull the refund list, identify which rep(s) and deal(s) are involved, and get on a call with the closer to understand what happened.</div>
+</div><div class="action-card warning">
+<div class="action-acct">Infinite Acquisitions LLC</div>
+<span class="action-badge badge-warning">Monitor</span>
+<div class="action-title">Booked calls down -73.7% WoW</div>
+<div class="action-detail">Went from 19 → 5 booked calls. Check setter activity — are they making enough dials and following up on leads? Also check if marketing volume has dropped (webinar registrations, ad spend, landing page traffic).</div>
+</div><div class="action-card win">
+<div class="action-acct">Clo Bare Money Coach</div>
+<span class="action-badge badge-win">Win</span>
+<div class="action-title">Show rate strong at 65.1%</div>
+<div class="action-detail">41 of 63 booked calls showed up. Up from 64.7% last week. Whatever the confirmation process is here, it's working. Document it and see if it can be applied to other accounts.</div>
+</div><div class="action-card win">
+<div class="action-acct">Hamza Invests</div>
+<span class="action-badge badge-win">Win</span>
+<div class="action-title">Revenue up +55.5% WoW</div>
+<div class="action-detail">$12,000 → $18,666 (+$6,666). Deals: 1 → 1. Avg deal also up to $18,666 from $12,000. Figure out what drove the increase — was it more volume, better lead quality, or closer performance? Document and replicate.</div>
+</div><div class="action-card win">
+<div class="action-acct">Hamza Invests</div>
+<span class="action-badge badge-win">Win</span>
+<div class="action-title">Bookings up +100.0% WoW</div>
+<div class="action-detail">10 → 20 calls booked. Make sure closers have capacity to handle the increased volume. Show rate is at 50.0% — if it holds, expect ~10 showed calls next week.</div>
+</div><div class="action-card win">
+<div class="action-acct">Yorkshire College Planning</div>
+<span class="action-badge badge-win">Win</span>
+<div class="action-title">Show rate strong at 56.5%</div>
+<div class="action-detail">152 of 269 booked calls showed up. Up from 55.3% last week. Whatever the confirmation process is here, it's working. Document it and see if it can be applied to other accounts.</div>
+</div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-metrics">
+<div class="card" id="card-Clo_Bare_Money_Coach">
+<div class="card-header"><div class="card-title">Clo Bare Money Coach</div><div class="light">🟢</div></div>
+<div class="metrics-row">
+<div class="m-box"><div class="m-val">$21,400</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-pos">+13.2%</div></div>
+<div class="m-box"><div class="m-val">5</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $4,280</div></div>
+<div class="m-box"><div class="m-val">65.1%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">63 booked / 41 showed</div></div>
+<div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div>
+</div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Hamza_Invests">
+<div class="card-header"><div class="card-title">Hamza Invests</div><div class="light">🟢</div></div>
+<div class="metrics-row">
+<div class="m-box"><div class="m-val">$18,666</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-pos">+55.5%</div></div>
+<div class="m-box"><div class="m-val">1</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $18,666</div></div>
+<div class="m-box"><div class="m-val">50.0%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">20 booked / 10 showed</div></div>
+<div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div>
+</div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Infinite_Acquisitions_LLC">
+<div class="card-header"><div class="card-title">Infinite Acquisitions LLC</div><div class="light">🟢</div></div>
+<div class="metrics-row">
+<div class="m-box"><div class="m-val">$0</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-neu">—</div></div>
+<div class="m-box"><div class="m-val">0</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $0</div></div>
+<div class="m-box"><div class="m-val">40.0%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">5 booked / 2 showed</div></div>
+<div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div>
+</div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Join_Relentless">
+<div class="card-header"><div class="card-title">Join Relentless</div><div class="light">🟢</div></div>
+<div class="metrics-row">
+<div class="m-box"><div class="m-val">$0</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-neu">—</div></div>
+<div class="m-box"><div class="m-val">0</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $0</div></div>
+<div class="m-box"><div class="m-val">0.0%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">4 booked / 0 showed</div></div>
+<div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div>
+</div><div class="flag-row flag-green">✓ Clean week</div></div><div class="card" id="card-Yorkshire_College_Planning">
+<div class="card-header"><div class="card-title">Yorkshire College Planning</div><div class="light">🔴</div></div>
+<div class="metrics-row">
+<div class="m-box"><div class="m-val">$163,000</div><div class="m-lbl">Cash Collected</div><div class="m-chg chg-neg">-2.6%</div></div>
+<div class="m-box"><div class="m-val">40</div><div class="m-lbl">Deals</div><div class="m-chg chg-neu">avg $4,075</div></div>
+<div class="m-box"><div class="m-val">56.5%</div><div class="m-lbl">Show Rate</div><div class="m-chg chg-neu">269 booked / 152 showed</div></div>
+<div class="m-box"><div class="m-val">21.7%</div><div class="m-lbl">Close Rate</div><div class="m-chg chg-neu">on showed</div></div>
+</div><div class="flag-row flag-red">⚠️ Refunds: $9,700</div></div>
+</div>
+
+</div></div></div>
+<script>
+const PASS="NetRev123";
+function tryLogin(){if(document.getElementById('pwInput').value===PASS){document.getElementById('loginOverlay').style.display='none';document.getElementById('dashContent').style.display='block';sessionStorage.setItem('nr_auth','1');}else{document.getElementById('loginErr').style.display='block';}}
+if(sessionStorage.getItem('nr_auth')==='1'){document.getElementById('loginOverlay').style.display='none';document.getElementById('dashContent').style.display='block';}
+function showAccount(id){switchTab('metrics');setTimeout(()=>{const el=document.getElementById('card-'+id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},100);document.querySelectorAll('.acct-item').forEach(i=>i.classList.remove('active'));const si=document.getElementById('si-'+id);if(si)si.classList.add('active');}
+function switchTab(t){document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');document.querySelector('[onclick*="'+t+'"]').classList.add('active');}
+</script></body></html>
