@@ -1,0 +1,34 @@
+name: Weekly Sales Dashboard
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"   # Every Monday 5am UTC = 7am SAST
+  workflow_dispatch:        # Also lets you trigger it manually from GitHub
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate dashboard
+        env:
+          SALESVUE_BASE_URL: ${{ secrets.SALESVUE_BASE_URL }}
+        run: python generate_dashboard.py
+
+      - name: Commit and push updated dashboard
+        run: |
+          git config user.name  "NR Dashboard Bot"
+          git config user.email "bot@netrevenue.io"
+          git add docs/
+          git diff --cached --quiet || git commit -m "chore: weekly dashboard update $(date +'%Y-%m-%d')"
+          git push
